@@ -68,6 +68,7 @@
     .profile-picture {
       margin-inline: auto;
       padding-inline: var(--space-gutter);
+      max-block-size: min(100%, 50vh);
     }
 
     .pattern-blur {
