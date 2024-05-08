@@ -1,0 +1,92 @@
+// Import design tokens
+@import "./colors";
+@import "./spacing";
+@import "./text-sizes";
+@import "./text-leading";
+@import "./fonts";
+@import "./text-weights";
+@import "./text-tracking";
+@import "./viewports";
+
+// Import functions
+@import "../10-functions/token-formatting.scss";
+@import "../10-functions/clamp-generator";
+@import "../10-functions/helpers/string-manipulation.scss";
+@import "../10-functions/helpers/value-providers";
+@import "../10-functions/helpers/map-manipulation";
+
+// Format and process design tokens
+$viewports: formatToken(getItems($viewports));
+$colors: formatToken(getItems($colors));
+$spacing: formatToken(
+  removeSpaces(clampGenerator(getItems($spacing), $viewports))
+);
+$fontSize: formatToken(clampGenerator(getItems($text-sizes), $viewports));
+$lineHeight: formatToken(getItems($text-leading));
+$fontFamily: formatToken(getItems($fonts));
+$fontWeight: formatToken(getItems($text-weights));
+$letterSpacing: formatToken(getItems($text-tracking));
+
+// Centralize design token values in theme map
+$theme: (
+  "breakpoints": $viewports,
+  "layout": (
+    "base-max": #{map-get($viewports, "max")}px,
+  ),
+  "colors": $colors,
+  "spacing": $spacing,
+  "fontSize": $fontSize,
+  "lineHeight": $lineHeight,
+  "fontFamily": $fontFamily,
+  "fontWeight": $fontWeight,
+  "letterSpacing": $letterSpacing,
+);
+
+// Define token groups with a key, prefix for CSS variables, and applicable properties.
+// prettier-ignore
+$groups: (
+  (
+    key: "colors",
+    prefix: "color",
+    properties: ("color", "background-color"),
+  ),
+  (
+    key: "spacing",
+    prefix: "space",
+    properties:
+      map-merge(
+        mapPrefix("margin", logicalSuffixes()),
+        mapPrefix("padding", logicalSuffixes())
+      ),
+  ),
+  (
+    key: "fontSize",
+    prefix: "size",
+    properties: ("font-size"),
+  ),
+  (
+    key: "lineHeight",
+    prefix: "leading",
+    properties: ("line-height"),
+  ),
+  (
+    key: "fontFamily",
+    prefix: "font",
+    properties: ("font-family"),
+  ),
+  (
+    key: "fontWeight",
+    prefix: "font-weight",
+    properties: ("font-weight"),
+  ),
+  (
+    key: "letterSpacing",
+    prefix: "tracking",
+    properties: ("letter-spacing"),
+  ),
+  (
+    key: "layout",
+    prefix: "layout",
+    properties: (),
+  ),
+);

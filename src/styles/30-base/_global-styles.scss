@@ -1,0 +1,233 @@
+@use "../10-functions/theme-accessor" as *;
+@use "../20-mixins/media-query" as *;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  // outline: solid 1px hotpink;
+}
+
+// GLOBAL SETTINGS ////////////////////
+body {
+  // accent-color: ???;
+  color: var(--color-global-text);
+  background: var(--color-global-bg);
+  font-size: var(--text-size-base);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-base);
+  letter-spacing: 0.1ch;
+  line-height: var(--leading-loose);
+  word-break: break-word;
+}
+
+// DOCUMENT STRUCTURE ////////////////////
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+header {
+  padding-block: var(--space-s);
+}
+
+main {
+  overflow: hidden;
+}
+
+// TYPOGRAPHY ////////////////////
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-heading);
+  text-wrap: balance;
+  hyphens: auto;
+  color: var(--color-heading-text);
+}
+
+h1 {
+  font-size: var(--text-size-heading-1);
+  max-inline-size: 30ch;
+  letter-spacing: 0.01ch;
+}
+
+h2 {
+  font-size: var(--text-size-heading-2);
+}
+
+h3 {
+  font-size: var(--text-size-heading-3);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05ch;
+}
+
+h4 {
+  font-size: var(--text-size-heading-4);
+  text-transform: uppercase;
+  letter-spacing: 0.4ch;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+.button,
+input,
+label {
+  line-height: get(line-height, short);
+}
+
+// CONTENT ELEMENTS ////////////////////
+// TEXT ELEMENTS
+p {
+  max-inline-size: var(--measure, 66ch);
+  text-wrap: pretty;
+}
+
+b {
+  font-weight: get(font-weight, bold);
+}
+
+// LIST ELEMENTS
+
+// FORM ELEMENTS
+
+// TABLE ELEMENTS
+table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+// IMAGE & SVG ELEMENTS
+img {
+  object-fit: contain;
+}
+
+// INTERACTIVE ELEMENTS ////////////////////
+// A ELEMENT SPECIFICS
+.link {
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-french-rose);
+  text-decoration: none;
+  text-underline-offset: 0;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: var(--color-cherry-blossom-pink);
+  }
+
+  &[aria-current="page"] {
+    //
+  }
+
+  & > img {
+    display: inline-block;
+  }
+}
+
+// BUTTON STYLES
+.button {
+  // https://piccalil.li/blog/link-button
+  // https://piccalil.li/blog/use-transparent-borders-and-outlines-to-assist-with-high-contrast-mode
+  // view sara soueidan's article on this
+  display: inline-flex;
+  gap: var(--button-gap, var(--space-gutter));
+  align-items: center;
+  justify-content: center;
+  padding: var(--button-padding, var(--space-xs) var(--space-m));
+  background: var(--button-bg, var(--color-surface-bg));
+  color: var(--button-text, var(--color-surface-text));
+  font-size: var(--button-font-size, var(--text-size-base));
+  font-family: var(--button-font, var(--font-display));
+  // font-weight: get(font-weight, medium);
+  text-transform: capitalize;
+  text-decoration: none;
+  border: 2px solid var(--button-border, var(--color-surface-border));
+  border-radius: var(--button-radius, 2em);
+
+  &:hover,
+  &:focus-visible {
+    --button-bg: var(--color-surface-bg-interact);
+  }
+
+  &[data-button="hero"] {
+    --space-flow: 2em;
+    --button-padding: var(--space-s) var(--space-l);
+    --button-bg: var(--color-orange-to-pink);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: inset 0 0 0 999px hsla(0, 0%, 100%, 0.4);
+    }
+  }
+
+  &[data-button="alternate"] {
+    --button-bg: var(--color-purple-to-pink);
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: inset 0 0 0 999px hsla(0, 0%, 100%, 0.4);
+    }
+  }
+}
+
+// INTERACTIVE STATES ////////////////////
+// SELECTION
+
+// FOCUS AND TARGET STATES
+:focus {
+  outline-offset: 0.65ch;
+}
+
+:target {
+  scroll-margin-block: 2ex;
+}
+
+// INTERFACE ELEMENTS ////////////////////
+// SELECTION
+::selection {
+  // color: get-theme("color", "bold");
+  // background: get-color("core", "primary");
+}
+
+// SKIP LINK
+.skip-link {
+  &-container {
+    position: absolute;
+    inset-block-start: 0.5em;
+    z-index: 999;
+  }
+
+  & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-block-size: 100%;
+    // font-family: get-font-family("code");
+    // font-size: get(font-size, step-1);
+  }
+
+  &:not(:focus) {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+}
+
+// SCROLLBAR ////////////////////

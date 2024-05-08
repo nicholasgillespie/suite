@@ -1,0 +1,45 @@
+@use "../20-mixins/theme-applier" as *;
+@use "../10-functions/theme-accessor" as *;
+
+// Theme Variables
+:root {
+  @include themeCssVariables();
+  --measure: 66ch;
+}
+
+// Semantic variables
+:root {
+  // Colors
+  --color-global-bg: #{get(color, cream-white)};
+  --color-global-text: #{get(color, grey)};
+  // --color-heading-text: #{get(color, dark-blue)};
+  --color-surface-bg: #{get(color, dark-blue)};
+  // --color-surface-bg-interact: #{get(color, slate-blue)};
+  --color-surface-text: #{get(color, cream-white)};
+  // --color-surface-text-interact: #{get(color, white)};
+
+  // Spacing
+  --space-gutter: #{get(space, s-l)};
+  --space-gutter-s: #{get(space, s)};
+  --space-gutter-l: #{get(space, l)};
+  --space-region: #{get(space, xl-5xl)};
+
+  // Typography - Text Sizes
+  --text-size-base: #{get(font-size, body)};
+  // --text-size-meta: #{get(font-size, step--1)};
+  --text-size-heading-1: #{get(font-size, heading-xl)};
+  --text-size-heading-2: #{get(font-size, heading-l)};
+  --text-size-heading-3: #{get(font-size, heading-m)};
+  --text-size-heading-4: #{get(font-size, heading-s)};
+
+  // Fonts
+  --font-display: #{get(font-family, base)};
+
+  // Font Weights
+  --font-weight-base: #{get(font-weight, regular)};
+  --font-weight-heading: #{get(font-weight, regular)};
+
+  // Accessibility
+  --focus-ring: 2px solid currentColor;
+  --focus-ring-offset: 2px;
+}

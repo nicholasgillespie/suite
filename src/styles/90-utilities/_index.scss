@@ -1,0 +1,10 @@
+@use "../20-mixins/theme-applier" as *;
+
+@use "./match-radii";
+@use "./position";
+@use "./text-align";
+@use "./visually-hidden";
+
+// Generate utility classes from theme and custom utilities
+@include themeUtilityClasses();
+@include themeUtilityCustoms();

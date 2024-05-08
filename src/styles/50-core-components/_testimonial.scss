@@ -1,0 +1,96 @@
+.testimonial {
+  --space-flow: 2.2em;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: [image-start background-start] 1fr [image-end pattern-start] auto [pattern-end text-start] 1fr [text-end background-end];
+
+  grid-template-rows:
+    [image-start] 5vh [background-start pattern-start text-start]
+    auto [text-end background-end image-end];
+  align-items: end;
+
+  .profile-picture {
+    grid-area: image;
+    z-index: 1;
+    margin-inline-start: auto;
+    padding-inline-start: var(--space-2xl);
+  }
+
+  .pattern-blur {
+    position: absolute;
+    grid-area: image;
+    transform: translateX(15%) translateY(-5%) scale(1.35);
+  }
+
+  .pattern-curved-line-2 {
+    grid-area: pattern;
+    margin-block: auto;
+    transform: translateY(-150%);
+    margin-inline-start: calc(var(--space-gutter) / 2);
+  }
+
+  @media screen and (max-width: 1000px) {
+    .pattern-curved-line-2 {
+      display: none;
+    }
+  }
+
+  .text {
+    grid-area: text;
+    margin-block: auto;
+    text-align: start;
+    padding: var(--space-gutter);
+    max-inline-size: 42ch;
+    color: var(--color-surface-text);
+
+    :last-child {
+      --space-flow: 0.35em;
+    }
+  }
+
+  &::after {
+    content: "";
+    grid-area: background;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 1rem;
+    background-color: var(--color-surface-bg);
+  }
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: [background-start image-start pattern-start text-start] auto [ text-end pattern-end image-end background-end];
+
+    grid-template-rows: [image-start] 30vh [background-start] auto [image-end pattern-start] auto [pattern-end text-start] auto [text-end background-end];
+    align-items: end;
+
+    .profile-picture {
+      margin-inline: auto;
+      padding-inline: var(--space-gutter);
+    }
+
+    .pattern-blur {
+      transform: translateX(10%) translateY(5%) scale(1.35);
+    }
+
+    .pattern-curved-line-2 {
+      display: block;
+      margin-block: var(--space-2xl) var(--space-l);
+      transform: unset;
+      margin-inline: auto;
+    }
+
+    .text {
+      margin-inline: auto;
+      text-align: center;
+      padding: var(--space-gutter) var(--space-gutter)
+        calc(var(--space-gutter) * 2) var(--space-gutter);
+      max-inline-size: unset;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-column: full-width;
+  }
+}

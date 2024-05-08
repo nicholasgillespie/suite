@@ -1,0 +1,98 @@
+// Import design token config
+@import "../00-settings/theme-config";
+
+// Generate global CSS custom properties from theme (use in 30-base/root.scss file)
+@mixin themeCssVariables() {
+  @each $group in $groups {
+    $tokenName: map-get($group, "key");
+    $prefix: map-get($group, "prefix");
+    $token: map-get($theme, $tokenName);
+
+    @each $itemName, $itemValue in $token {
+      @if type-of($itemValue) == "map" {
+        @each $subItemName, $subItemValue in $itemValue {
+          --#{$prefix}-#{$itemName}-#{$subItemName}: #{$subItemValue};
+        }
+      } @else {
+        @if $itemName == "standard" {
+          --#{$prefix}: #{$itemValue};
+        } @else {
+          --#{$prefix}-#{$itemName}: #{$itemValue};
+        }
+      }
+    }
+  }
+}
+
+// Mixin to generate utility classes from theme (use in 90-utilities/index.scss file)
+@mixin themeUtilityClasses() {
+  @each $group in $groups {
+    $tokenName: map-get($group, "key");
+    $prefix: map-get($group, "prefix");
+    $properties: map-get($group, "properties");
+    $token: map-get($theme, $tokenName);
+
+    @if $properties != null {
+      @each $property in $properties {
+        $propOrAbbr: $property;
+
+        @if $property == "background-color" {
+          $propOrAbbr: "background";
+          $property: "background";
+        }
+        @if $tokenName == "spacing" {
+          $propOrAbbr: abbreviate(listToString($property));
+          .u-#{$propOrAbbr}-auto {
+            #{$property}: auto;
+          }
+          .u-#{$propOrAbbr}-zero {
+            #{$property}: 0;
+          }
+        }
+
+        @each $itemName in map-keys($token) {
+          .u-#{$propOrAbbr}-#{$itemName} {
+            #{$property}: var(--#{$prefix}-#{$itemName});
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mixin to generate custom utility classes from theme (use in 90-utilities/index.scss file)
+@mixin themeUtilityCustoms() {
+  $tokenPrefixesProperties: (
+    ("spacing", "space-box", "--space-box"),
+    ("spacing", "space-cluster", "--space-cluster"),
+    ("spacing", "space-columns", "--space-columns"),
+    ("spacing", "space-cover", "--space-cover"),
+    ("spacing", "space-flow", "--space-flow"),
+    ("spacing", "space-grid", "--space-grid"),
+    ("spacing", "space-gutter", "--space-gutter"),
+    ("spacing", "space-region", "--space-region"),
+    ("spacing", "space-repel", "--space-repel"),
+    ("spacing", "space-sidebar", "--space-sidebar"),
+    ("spacing", "space-stack", "--space-stack"),
+    ("spacing", "space-switcher", "--space-switcher")
+  );
+
+  @each $tokenName, $prefix, $property in $tokenPrefixesProperties {
+    $token: map-get($theme, $tokenName);
+    $tokenPrefix: null;
+
+    @each $group in $groups {
+      @if map-get($group, "key") == $tokenName {
+        $tokenPrefix: map-get($group, "prefix");
+      }
+    }
+
+    @if $token != null and $tokenPrefix != null {
+      @each $itemName, $itemValue in $token {
+        .u-#{$prefix}-#{$itemName} {
+          #{$property}: var(--#{$tokenPrefix}-#{$itemName});
+        }
+      }
+    }
+  }
+}

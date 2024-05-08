@@ -1,0 +1,46 @@
+$text-sizes: (
+  "title": "Text Sizes",
+  "description":
+    "A minimum and maximum text size size allows you to pick the right size from a ratio, depending on the context size. The min and max sizes are in pixels and should be converted to appropiate sizes, per context. For example, for web, they should be converted to REM units (pixelSize / baseSize)",
+  "meta": (
+    // "scaleGenerator":
+    //   "https://utopia.fyi/type/calculator/?c=320,18,1.2,1240,20,1.414,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12",,,,,,,
+  ),
+  "items": (
+    (
+      "name": "Footer",
+      "min": 15,
+      "max": 15,
+    ),
+    (
+      "name": "Body",
+      "min": 16,
+      "max": 18,
+    ),
+    (
+      "name": "Quote",
+      "min": 18,
+      "max": 20,
+    ),
+    (
+      "name": "Heading S",
+      "min": 16,
+      "max": 16,
+    ),
+    (
+      "name": "Heading M",
+      "min": 18,
+      "max": 18,
+    ),
+    (
+      "name": "Heading L",
+      "min": 40,
+      "max": 48,
+    ),
+    (
+      "name": "Heading XL",
+      "min": 38,
+      "max": 72,
+    ),
+  ),
+);
