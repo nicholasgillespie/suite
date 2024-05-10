@@ -168,7 +168,7 @@ img {
   gap: var(--button-gap, var(--space-gutter));
   align-items: center;
   justify-content: center;
-  padding: var(--button-padding, var(--space-s) var(--space-m));
+  padding: var(--button-padding, var(--space-s) var(--space-s-m));
   background: var(--button-bg, var(--color-surface-bg));
   color: var(--button-text, var(--color-surface-text));
   font-size: var(--button-font-size, var(--text-size-base));
@@ -176,6 +176,7 @@ img {
   font-weight: var(--button-font-weight, var(--font-weight-bold));
   text-transform: capitalize;
   text-decoration: none;
+  letter-spacing: var(--tracking-tight);
   border: var(--border-width) solid var(--button-border, transparent);
   border-radius: var(--button-radius, var(--border-radius));
   position: relative;
