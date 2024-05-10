@@ -101,7 +101,7 @@ button,
 .button,
 input,
 label {
-  line-height: get(line-height, standard);
+  line-height: get(line-height, short);
 }
 
 // CONTENT ELEMENTS ////////////////////
