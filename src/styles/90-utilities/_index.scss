@@ -1,5 +1,6 @@
 @use "../20-mixins/theme-applier" as *;
 
+@use "./emphasise";
 @use "./match-radii";
 @use "./position";
 @use "./text-align";
