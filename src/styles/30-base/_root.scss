@@ -12,17 +12,17 @@
   // Colors
   --color-global-bg: #{get(color, cream-white)};
   --color-global-text: #{get(color, grey)};
-  // --color-heading-text: #{get(color, dark-blue)};
+  --color-heading-text: #{get(color, dark-blue)};
   --color-surface-bg: #{get(color, dark-blue)};
-  // --color-surface-bg-interact: #{get(color, slate-blue)};
+  --color-surface-bg-interact: #{get(color, rainbow)};
   --color-surface-text: #{get(color, cream-white)};
-  // --color-surface-text-interact: #{get(color, white)};
+  --color-surface-text-interact: #{get(color, cream-white)};
 
   // Spacing
   --space-gutter: #{get(space, s-l)};
   --space-gutter-s: #{get(space, s)};
   --space-gutter-l: #{get(space, l)};
-  --space-region: #{get(space, xl-5xl)};
+  --space-region: #{get(space, "3xl")};
 
   // Typography - Text Sizes
   --text-size-base: #{get(font-size, body)};

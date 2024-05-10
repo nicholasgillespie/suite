@@ -42,7 +42,10 @@
     text-align: start;
     padding: var(--space-gutter);
     max-inline-size: 42ch;
-    color: var(--color-surface-text);
+
+    & > * {
+      color: var(--color-surface-text);
+    }
 
     :last-child {
       --space-flow: 0.35em;
@@ -85,8 +88,8 @@
     .text {
       margin-inline: auto;
       text-align: center;
-      padding: var(--space-gutter) var(--space-gutter)
-        calc(var(--space-gutter) * 2) var(--space-gutter);
+      padding: var(--space-gutter) var(--space-gutter) var(--space-2xl)
+        var(--space-gutter);
       max-inline-size: unset;
     }
   }

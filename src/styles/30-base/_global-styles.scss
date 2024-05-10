@@ -29,7 +29,29 @@ body {
 }
 
 header {
-  padding-block: var(--space-s);
+  --space-region: var(--space-3xl);
+  --space-repel: var(--space-m);
+  padding-block-start: var(--space-m-xl);
+}
+
+footer {
+  --space-region: var(--space-2xl);
+  --space-repel: var(--space-l);
+  --space-cluster: var(--space-gutter);
+  --repel-vertical-alignment: stretch;
+
+  li {
+    a:hover img {
+      filter: grayscale(75%) brightness(400%);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .l-repel {
+      flex-direction: column;
+      --repel-vertical-alignment: center;
+    }
+  }
 }
 
 main {
@@ -79,7 +101,7 @@ button,
 .button,
 input,
 label {
-  line-height: get(line-height, short);
+  line-height: get(line-height, standard);
 }
 
 // CONTENT ELEMENTS ////////////////////
@@ -139,43 +161,57 @@ img {
   // https://piccalil.li/blog/link-button
   // https://piccalil.li/blog/use-transparent-borders-and-outlines-to-assist-with-high-contrast-mode
   // view sara soueidan's article on this
+  --border-width: 1px;
+  --border-radius: 0.25em;
+
   display: inline-flex;
   gap: var(--button-gap, var(--space-gutter));
   align-items: center;
   justify-content: center;
-  padding: var(--button-padding, var(--space-xs) var(--space-m));
+  padding: var(--button-padding, var(--space-s) var(--space-m));
   background: var(--button-bg, var(--color-surface-bg));
   color: var(--button-text, var(--color-surface-text));
   font-size: var(--button-font-size, var(--text-size-base));
   font-family: var(--button-font, var(--font-display));
-  // font-weight: get(font-weight, medium);
+  font-weight: var(--button-font-weight, var(--font-weight-bold));
   text-transform: capitalize;
   text-decoration: none;
-  border: 2px solid var(--button-border, var(--color-surface-border));
-  border-radius: var(--button-radius, 2em);
+  border: var(--border-width) solid var(--button-border, transparent);
+  border-radius: var(--button-radius, var(--border-radius));
+  position: relative;
 
   &:hover,
   &:focus-visible {
-    --button-bg: var(--color-surface-bg-interact);
+    background: transparent;
   }
 
-  &[data-button="hero"] {
-    --space-flow: 2em;
-    --button-padding: var(--space-s) var(--space-l);
-    --button-bg: var(--color-orange-to-pink);
-
-    &:hover,
-    &:focus-visible {
-      box-shadow: inset 0 0 0 999px hsla(0, 0%, 100%, 0.4);
-    }
+  &:hover::before,
+  &:focus-visible::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--border-width) * -1);
+    background: var(--color-surface-bg-interact);
+    border-radius: var(--border-radius);
+    z-index: -1;
   }
 
   &[data-button="alternate"] {
-    --button-bg: var(--color-purple-to-pink);
+    --button-bg: var(--color-global-bg);
+    --button-text: var(--color-surface-bg);
+    --button-border: var(--color-surface-bg);
+    --alternate-bg: transparent;
+    background-color: var(--alternate-bg);
 
     &:hover,
     &:focus-visible {
-      box-shadow: inset 0 0 0 999px hsla(0, 0%, 100%, 0.4);
+      --alternate-bg: var(--color-surface-bg);
+      --button-text: var(--color-surface-text-interact);
+    }
+
+    &:hover::before,
+    &:focus-visible::before {
+      content: none;
+      z-index: -1;
     }
   }
 }

@@ -20,16 +20,14 @@ $colors: (
       "value": #faf8f6,
     ),
     (
-      "name": "Lavender Crystal",
-      "value": #a060ff,
-    ),
-    (
-      "name": "Vibrant Violet",
-      "value": #cb30e3,
-    ),
-    (
-      "name": "Radiant Sunset",
-      "value": #ffa84e,
+      "name": "Rainbow",
+      "value":
+        linear-gradient(
+          160deg,
+          rgba(160, 96, 255, 1) 0%,
+          rgba(203, 48, 227, 1) 50%,
+          rgba(255, 168, 78, 1) 100%
+        ),
     ),
   ),
 );

@@ -13,7 +13,7 @@
 .l-repel {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: var(--repel-horizontal-alignment, space-between);
   align-items: var(--repel-vertical-alignment, center);
   gap: var(--space-repel, var(--space-gutter));
 
