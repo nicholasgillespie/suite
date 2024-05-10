@@ -6,7 +6,7 @@
   &::after {
     content: "";
     display: block;
-    height: 2ch;
+    block-size: 2ch;
     pointer-events: none;
     background-image: url(/public/images/pattern-curved-line-1.svg);
     background-position: bottom center;
