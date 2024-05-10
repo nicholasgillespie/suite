@@ -39,7 +39,7 @@ footer {
   --space-repel: var(--space-l);
   --space-cluster: var(--space-gutter);
   --repel-vertical-alignment: stretch;
-
+  background-color: var(--color-cream);
   li {
     a:hover img {
       filter: grayscale(75%) brightness(400%);
@@ -55,7 +55,18 @@ footer {
 }
 
 main {
-  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-cream);
+    z-index: -1;
+  }
 }
 
 // TYPOGRAPHY ////////////////////

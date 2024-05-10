@@ -1,5 +1,7 @@
 .testimonial {
   --space-flow: 2.2em;
+  overflow: hidden;
+  z-index: 1;
 
   position: relative;
   display: grid;
