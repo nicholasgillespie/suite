@@ -4,7 +4,7 @@ Visit the live website here: [Suite Project Website](https://nicholasgillespie.g
 
 ## Overview
 
-The Suite e-leaning project is a Vite and PostCSS-based project, hosted on GitHub Pages. It incorporates the in-development W3C design system, utilizing SCSS syntax for styling.
+The Suite business solution project is a Vite and PostCSS-based project, hosted on GitHub Pages. It incorporates the in-development W3C design system, utilizing SCSS syntax for styling.
 
 [![Screenshot of the Suite project](./docs/design/preview.jpg)](https://nicholasgillespie.github.io/suite/)
 
